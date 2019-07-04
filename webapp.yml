@@ -1,5 +1,8 @@
 ---
  - hosts: prod
    tasks:
-   - name: deploy webapp into qa server
-     copy: src=/var/lib/jenkins/workspace/cicd/index.html  dest=/var/www/html
+   - name: pull docker images from registry
+     raw: docker pull sreedevops26/mydevops:1.0
+
+   - name: bringup container
+     raw: docker run -dti --name webapp -p 80:80 sreedevops26/mydevops:1.0 /bin/bash 
