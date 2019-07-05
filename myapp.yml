@@ -1,0 +1,14 @@
+---
+ - hosts: prod
+   tasks:
+   - name: pull docker image from registry
+     raw: docker pull sreedevops26/mydevops:2019.2
+
+   - name: remove container if already exists
+     raw: docker rm -f myapp
+     ignore_errors: true
+
+   - name: create container for webapp
+     raw: docker run -dti --name myapp sreedevops26/mydevops:2019.2 /bin/bash
+
+
