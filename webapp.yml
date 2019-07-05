@@ -6,5 +6,9 @@
    - name: pull docker images from registry
      raw: docker pull sreedevops26/mydevops:1.0
 
+   - name: remove docker container if already exists
+     raw: docker rm -f webapp 
+     ignore_errors: true
+
    - name: bringup container
      raw: docker run -dti --name webapp -p 80:80 sreedevops26/mydevops:1.0 /bin/bash 
