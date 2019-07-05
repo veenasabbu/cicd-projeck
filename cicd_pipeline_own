@@ -1,0 +1,33 @@
+node 
+{
+   
+stage('pull code from scm')
+
+{
+git branch: 'release/2019.2_BR', url: 'https://github.com/sreedevops26/cicd-devops-project.git'
+}
+
+stage('build docker image')
+{
+sh 'docker build -t  sreedevops26/mydevops:${BUILD_NUMBER} .'
+}
+stage('push docker image into registry')
+{
+withDockerRegistry(credentialsId: 'regcred', url: 'https://index.docker.io/v1/') 
+{
+    sh 'docker push sreedevops26/mydevops:${BUILD_NUMBER}'
+}
+}
+stage('change version as jenkins build number for ansible playbook')
+{
+sh "sed -i 's/version: test/version: ${BUILD_NUMBER}/g' /var/lib/jenkins/workspace/cicd_pipeline/webapp.yml"
+}
+stage('run ansible playbook to pull docker image and bringup containers')
+{
+ ansiblePlaybook credentialsId: 'prod', installation: 'devops-ansible', inventory: '/etc/ansible/hosts', playbook: '/var/lib/jenkins/workspace/cicd_pipeline/webapp.yml'
+}
+stage('remove newly created image')
+{
+sh "docker rm -f sreedevops26/mydevops:${BUILD_NUMBER}"
+}
+}
