@@ -11,4 +11,7 @@
      ignore_errors: true
 
    - name: bringup container
-     raw: docker run -dti --name webapp -p 80:80 sreedevops26/mydevops:"{{version}}" /bin/bash 
+     raw: docker run -dti --name webapp -p 80:80 sreedevops26/mydevops:"{{version}}" /bin/bash
+
+   - name: restart docker container after deploying app
+     raw: docker restart webapp
