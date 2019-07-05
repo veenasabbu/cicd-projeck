@@ -4,7 +4,7 @@
       version: test
    tasks:
    - name: pull docker images from registry
-     raw: docker pull sreedevops26/mydevops:1.0
+     raw: docker pull sreedevops26/mydevops:"{{version}}"
 
    - name: remove docker container if already exists
      raw: docker rm -f webapp 
