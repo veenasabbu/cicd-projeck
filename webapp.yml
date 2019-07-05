@@ -1,5 +1,7 @@
 ---
  - hosts: prod
+   vars:
+      version: test
    tasks:
    - name: pull docker images from registry
      raw: docker pull sreedevops26/mydevops:1.0
