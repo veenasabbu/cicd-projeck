@@ -9,6 +9,6 @@
      ignore_errors: true
 
    - name: create container for webapp
-     raw: docker run -dti --name myapp sreedevops26/mydevops:2019.2 /bin/bash
+     raw: docker run -dti --name myapp -p 80:80 sreedevops26/mydevops:2019.2 /bin/bash
 
 
