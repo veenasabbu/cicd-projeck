@@ -11,4 +11,6 @@
    - name: create container for webapp
      raw: docker run -dti --name myapp -p 80:80 sreedevops26/mydevops:2019.2 /bin/bash
 
-
+   - name: start nginx service from docker host
+     raw: docker exec -ti my_container sh -c "service nginx start"
+     ignore_errors: true
