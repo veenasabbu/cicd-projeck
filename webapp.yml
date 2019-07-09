@@ -8,8 +8,14 @@
      raw: docker rm -f myapp
      ignore_errors: true
 
-   - name: create container for webapp
-     raw: docker run -dti --name myapp -p 80:80 sreedevops26/mydevops:2019.2 /bin/bash
+   - name: copy nginx compose file into target server
+     copy: src=webapp-nginx.yml  dest=/root
+
+#   - name: create container for webapp
+#     raw: docker run -dti --name myapp -p 80:80 sreedevops26/mydevops:2019.2 /bin/bash
+ 
+   - name: run docker-compose file to bring up webapp
+     raw: docker-compose -f /root/webapp-nginx.yml up -d
 
    - name: start nginx service from docker host
      raw: docker exec -it myapp sh -c "service nginx start"
