@@ -9,13 +9,13 @@ git branch: 'release/2019.2_BR', url: 'https://github.com/sreedevops26/cicd-devo
 
 stage('build docker image')
 {
-sh 'docker build -t  sreedevops26/mydevops:${choose-docker-tag} .'
+sh 'docker build -t  sreedevops26/mydevops:"${choose-docker-tag}" .'
 }
 stage('push docker image into registry')
 {
 withDockerRegistry(credentialsId: 'regcred', url: 'https://index.docker.io/v1/') 
 {
-    sh 'docker push sreedevops26/mydevops:${choose-docker-tag}'
+    sh 'docker push sreedevops26/mydevops:"${choose-docker-tag}"'
 }
 }
 stage('change version as jenkins build number for ansible playbook')
