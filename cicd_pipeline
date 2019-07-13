@@ -49,3 +49,4 @@ sh "docker rmi -f sreedevops26/mydevops:${BUILD_NUMBER}"
 }
 }
 }
+}
