@@ -1,5 +1,5 @@
 ---
- - hosts: prod
+ - hosts: qa-server
    tasks:
    - name: pull docker image from registry
      raw: docker pull sreedevops26/mydevops:2019.2
