@@ -5,7 +5,7 @@
 #     raw: docker pull sreedevops26/mydevops:2019.2
 
    - name: remove container if already exists
-     raw: docker rm -f myapp
+     raw: docker rm -f volton_app
      ignore_errors: true
 
    - name: copy nginx compose file into target server
