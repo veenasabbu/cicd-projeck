@@ -1,15 +1,15 @@
 ---
- - hosts: prod
+ - hosts: dev
    tasks:
    - name: pull docker image from registry
-     raw: docker pull sreedevops26/mydevops:2019.2
+     raw: docker pull veenadevops/mydevops:2019.2
 
    - name: remove container if already exists
      raw: docker rm -f myapp
      ignore_errors: true
 
    - name: create container for webapp
-     raw: docker run -dti --name myapp -p 80:80 sreedevops26/mydevops:2019.2 /bin/bash
+     raw: docker run -dti --name myapp -p 80:80 veenadevops/mydevops:2019.2 /bin/bash
 
    - name: start nginx service from docker host
      raw: docker exec -it myapp sh -c "service nginx start"

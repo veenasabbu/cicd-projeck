@@ -1,7 +1,7 @@
 version: '3'
 services:
   nginx: 
-    image: sreedevops26/mydevops:2019.2
+    image: veenadevops/mydevops:2019.2
     container_name: volton_app
     ports:
       - 80:80

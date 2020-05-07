@@ -1,8 +1,8 @@
 ---
- - hosts: qa-server
+ - hosts: dev
    tasks:
 #   - name: pull docker image from registry
-#     raw: docker pull sreedevops26/mydevops:2019.2
+#     raw: docker pull veenadevops/mydevops:2019.2
 
    - name: remove container if already exists
      raw: docker rm -f volton_app
@@ -12,7 +12,7 @@
      copy: src=webapp-nginx.yml  dest=/tmp
 
 #   - name: create container for webapp
-#     raw: docker run -dti --name myapp -p 80:80 sreedevops26/mydevops:2019.2 /bin/bash
+#     raw: docker run -dti --name myapp -p 80:80 veenadevops/mydevops:2019.2 /bin/bash
  
    - name: run docker-compose file to bring up webapp
      raw: docker-compose -f /tmp/webapp-nginx.yml up -d
